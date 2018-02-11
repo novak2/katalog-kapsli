@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+        <h1 class="my-4 text-center text-lg-left">Moje Kapsle</h1>
+        <div class="row text-center text-lg-left">
+            {% for usercoin in object_list %}
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                <a href="{% url 'usercoin-edit' usercoin.id %}" class="d-block mb-4 h-100">
+                    <span class="text-center d-block">{{ usercoin }}</span>
+                    <img class="img-fluid img-thumbnail" style="width: 200px; height: auto" src="{{ usercoin.coin.image.url }}" alt="">
+                </a>
+            </div>
+            {% empty %}
+            <p>Nie masz kapsli w bazie :(.</p>
+            {% endfor %}
+        </div>
+        <h1 class="my-4 text-center text-lg-left">Moje Braki</h1>
+        <div class="row text-center text-lg-left">
+            {% for coin in dont_have_list %}
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                <a href="{% url 'coin-detail' coin.brewery.slug coin.id %}" class="d-block mb-4 h-100">
+                    <span class="text-center d-block">{{ coin }}</span>
+                    <img class="img-fluid img-thumbnail" style="width: 200px; height: auto" src="{{ coin.image.url }}" alt="">
+                </a>
+            </div>
+            {% empty %}
+            <p>Nie masz braków w bazie :).</p>
+            {% endfor %}
+        </div>
+        <h1 class="my-4 text-center text-lg-left">Lista Ignorowanych</h1>
+        <div class="row text-center text-lg-left">
+            {% for coin in ignored %}
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                <a href="{% url 'coin-detail' coin.brewery.slug coin.id %}" class="d-block mb-4 h-100">
+                    <span class="text-center d-block">{{ coin }}</span>
+                    <img class="img-fluid img-thumbnail" style="width: 200px; height: auto" src="{{ coin.image.url }}" alt="">
+                </a>
+            </div>
+            {% empty %}
+            <p>Nie posiadasz ignorowanych kapsli.</p>
+            {% endfor %}
+        </div>
+{% endblock content %}

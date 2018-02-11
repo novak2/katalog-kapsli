@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+<h1 class="my-4 text-center text-lg-left">{{ object }}</h1>
+<div class="row text-center text-lg-left">
+    <div class="col-lg-3 col-md-4 col-xs-6">
+        <img class="img-fluid img-thumbnail" style="width: 200px; height: auto" src="{{ object.coin.image.url }}" alt="">
+    </div>
+</div>
+<div class="row text-center text-lg-left">
+    <form action="" method="post">{% csrf_token %}
+        <p>Czy na pewno chcesz usunąć "{{ object }}"?</p>
+        <input type="submit" class="btn btn-danger" value="Usuń" />
+    </form>
+</div>
+{% endblock content %}
