@@ -44,7 +44,6 @@ class CoinDetailView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(*args, **kwargs)
         context['coin'] = Coin.objects.get(pk=self.kwargs['pk'])
         context['ignore_coin'] = Coin.objects.filter(ignorecoin__owner=self.request.user).filter(pk=self.kwargs['pk'])
-        #context['']
         return context
 
     def form_valid(self, form):
